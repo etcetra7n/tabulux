@@ -7,11 +7,11 @@ setuptools.setup(
     name="tabulator", 
     version="1.0.0",
     author="John",
-    author_email="joffox007@gmail.com",
+    author_email="JohnAnchery005@gmail.com",
     description="A package for creating console tables",
     long_description=long_description,
     long_description_content_type="text",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/John-pix/Tabulator-Python",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
