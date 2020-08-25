@@ -7,7 +7,7 @@ setuptools.setup(
     name="tabulator", 
     version="1.0.0",
     author="John",
-    author_email="JohnAnchery005@gmail.com",
+    author_email="JohnPix005@gmail.com",
     description="A package for creating console tables",
     long_description=long_description,
     long_description_content_type="text",
