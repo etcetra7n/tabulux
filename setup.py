@@ -4,7 +4,7 @@ with open("README.txt", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="ConsoleTabulator", 
+    name="tabulux", 
     version="1.0.0",
     author="John",
     author_email="JohnPix005@gmail.com",
