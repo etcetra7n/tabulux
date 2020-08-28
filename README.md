@@ -1,2 +1,2 @@
 # Tabulator-Python
-A python package for creating a console table
+A python package for performing table operation
