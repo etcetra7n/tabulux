@@ -1,4 +1,4 @@
-# -*- coding-UTF-8 -*-
+# -*- coding: UTF-8 -*-
 # -*- Indentation Spaces: 4 -*-
 '''
 A package for printing data in tabular form
@@ -10,7 +10,7 @@ Check out the source code at https://github.com/John-pix/Tabulator-Python
 '''
 class CellOutOfBoundsException(Exception):
 
-    def __init__(self, row, column, message="Cell Location Not Found"):
+    def __init__(self, row, column, message="Cell Not Found"):
         self.row = row
         self.column = column
         self.message = message
@@ -19,115 +19,118 @@ class CellOutOfBoundsException(Exception):
     def __str__(self):
         return f'Row = {self.row}; Column = {self.column}'
 
-class create:
+class table:
     '''
-    A table object is created using the create method
+    A table object is created using the table class
         Syntax : 
-        tableA = create(
+        table1 = table(
             {
                 'Head1':['content-A1',content-A2',],
                 'Head2':['content-B1',content-B2',],
             }
         ) 
 
-        Now the table object is stored in the variable 'tableA'
+        Now the table object is stored in the variable 'table1'
+        Note: every column should contain same number of elements'
     '''
     def __init__(layout):
         
         self.layout = layout
-        self.row = len(layout)
-        self.column = len(layout[0])
-    def getColumnLength(self):
+        self.row = len(layout[0])
+        self.column = len(layout)
+    def column_length(self):
         '''
         Syntax:
-            getColumnLength(self)
-        returns integer representing the number of column
+            table1.column_length()
+        returns integer representing the number of columns in 'table1'
         '''
         return self.column
-    def getRowLength(self):
+    def row_length(self):
         '''
         Syntax:
-            getRowLength(self)
-        returns integer representing the number of row
+            table1.row_length()
+        returns integer representing the number of rows in 'table1'
         '''
         return self.row
+
     def _get_layout(self):
         return self.layout
 
-    def printTable(self):
-        '''
-        Syntax : 
-        tableA = create(
-            {
-                'Head1':['content-A1',content-A2',],
-                'Head2':['content-B1',content-B2',],
-            }
-        ) 
-        printTable(tableA)
-        Output:
-               Head1    |  Head2
-             -----------------------
-             content-A1 | Content-B1
-             content-A2 | Content-B2
-        
-        '''
-        table = _get_layout(self)
-        titles = []
-        for title in table:
-            titles.append(title)
-
-        print('|',end = '')
-        for title in titles:    #for printing the headings
-            print(title,end=' | ')
-
-        print("\n-----------",end='')
-
-        for column in range(getRow(self)):
-            print()
-            for row in titles:
-                print(table[row][column], end = ' | ')
-
-    def getHeads(self)
-        '''
+    def heads(self):
         Syntax :
-            getHeads(self)
+            table1.heads()
+           
+            where:
+               table1 = a table object
 
-        returns a 'list' of string representing the each heading of the table
+        returns a 'list' of string representing the each heading of 'table1'
         '''
         table = _get_layout(self)
         heads = []
         for head in table:
             heads.append(head)
         return heads
-    
-    def getHead(self, row):
+
+    def head(self, column):
         '''
         Syntax:
-            getHeads(Table_obj, row):
+            table1.head(column_number):
+            where:
+               table1         =  A table object
+               column_number  =  an integer
 
-        returns a string containing of the heading at the 'row' parameter, where 'row' is an integer value
+        returns a heading of the specified 'column_number' of 'table1' as a string.
         '''
 
         table = _get_layout(self)
-        heads = []
-        for head in table:
-            heads.append(head)
-        return heads[row]
+        heads = heads(self)
+ 
+        return heads[column]
 
-    def getCell(self, row, column):
+
+    def print(self):
+        '''
+        Syntax :
+            table1.print()
+        Output:
+            prints data in 'table1' in tabular form
+            Here is how the table would be printed:
+                   Head1    |  Head2
+                 -----------+-----------
+                 content-A1 | Content-B1
+                 content-A2 | Content-B2
+        
+        '''
+        table = _get_layout(self)
+        heads = heads(self)
+
+        print('|',end = '')
+        for head in heads:    #for printing the headings
+            print(head,end=' | ')
+
+        print("\n-----------",end='')
+
+        for column in range(row(self)):
+            print()
+            for row in heads:
+                print(table[row][column], end = ' | ')
+
+    def cell(self, row, column):
         '''
         Syntax:
-            getCell(self, row, column)
+            table1.cell(row, column)
 
             where,
+            table1 = table object
+
             row    = integer representing the row number (starting from 0), or, 
-                     the heading of the table as string
+                     the heading of the column as string
 
             column = integer representing the column number (starting from 0)
 
-        returns the Cell Content of the specified locationas String. 
+        returns the Cell Content of the specified location as String. 
 
-        If the cell is not defined in the cell or the rows and column given is out of bounds, a CellOutOfBoundsException is raised
+        If the cell is not defined in the table or the rows or column given is out of bounds, a CellOutOfBoundsException is raised
         '''
         table = _get_layout(self)
         if row > self.row:
@@ -139,57 +142,55 @@ class create:
             return self.layout[row][column]
         elif type(column) is int:
             table = _get_layout(self)
-            heads = []
-            for head in table:
-                heads.append(head)
+            heads = heads(self)
 
-            return table[heads[row]][column]
+        return table[heads[row]][column]
 
-        def getRow(self, column):
+        def row(self, row_number):
             '''
-            You can use the getRow method to get all the row elements as a list
+            You can use the row() method to get all the row elements in the table as a list
 
             Syntax:
-                getRow(table_obj, columnID)
+                table1.row(row_number)
 
                 where:
-                    table_obj = a table object
-                    rowID     = an integer representing the column number (starts from 0)
+                    table1      = a table object
+                    row_number  = an integer representing the row number (starts from 0)
 
-            For example, the columID of 2 would return a list containing the second row from all columns
+            For example, the row_number of 2 would return a list containing the values from second row from all columns
             A 'CellOutOfBoundsException' is raised if the specified row exceeds the number of rows in the table
 
             '''
-            if column > self.column:
-                raise CellOutOfBoundsException('X', column)
+            if row_number > self.row:
+                raise CellOutOfBoundsException(row_number, 'X')
 
             table = _get_layout(self)
             extracted_row = []
             
-            heads = getHeads(self)
+            heads = heads(self)
             for head in heads:
-                extracted_row.append(table[head][column])
+                extracted_row.append(table[head][row_number])
             
             return extracted_row
         
-        def getColumn(self, row):
+        def column(self, column_number):
             '''
             You could use the getColumn function to get list containing all the whole column, under a specified row
             Syntax:
-                getColmn(table1, rowID)
+                table1.column(column_number)
 
                 where:
-                    table1 = a table object
-                    rowID  = an integer which represents row number, whose columns must be returned(starting from 0) or,
-                             the heading of the column,(as string), whose values must be returned
+                    table1         = a table object
+                    column_number  = an integer which represents column number, whose cells must be returned(starting from 0) or,
+                                     the heading of the column,(as string), whose values must be returned
             '''
 
-            if row > self.row:
-                raise CellOutOfBoundsException(row, 'X')
+            if column_number > self.column:
+                raise CellOutOfBoundsException('X', column_number)
 
-            if type(row) is str:
-                return self.layout[row]
-            elif type(row) is int:
-                return _get_layout(self)[getHead(self, row)]
+            if type(column_number) is str:
+                return self.layout[column_number]
+            elif type(column_number) is int:
+                return self.layout[head(self, column_number)]
 
 
