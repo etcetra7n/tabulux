@@ -1,7 +1,7 @@
 tabulux
 =======
 
-This package is for performing tablular operations and for making making tabular data
+This package is for performing tablular operations and for making making tabular data.
 
 Import using:
 
