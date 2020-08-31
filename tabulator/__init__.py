@@ -1,7 +1,7 @@
 # -*- encoding: UTF-8 -*-
 # -*- Indentation: 4 Spaces -*-
 '''
-A package for some tablular operation
+A package for tablular operation and for making making tabular data
 This needs a lot of development, and this project is hosted on github for developmental purpose, 
 in which anyone can contribute, smallest of which are appreciated
 Check out the source code at https://github.com/John-pix/Tabulator-Python
@@ -30,11 +30,11 @@ class table:
         Now the table object is stored in the variable 'table1'
         Note: every column should contain same number of elements'
     '''
-    def __init__(layout):
+    def __init__(self, layout):
         
         self.layout = layout
-        self.row = len(layout[0])
-        self.column = len(layout)
+        self.row_len = len(layout[list(layout)[0]])
+        self.column_len = len(layout)
     def column_length(self):
         '''
         Syntax:
@@ -45,7 +45,7 @@ class table:
 
         returns integer representing the number of columns in 'table1'
         '''
-        return self.column
+        return self.column_len
     def row_length(self):
         '''
         Syntax:
@@ -56,7 +56,7 @@ class table:
 
         returns integer representing the number of rows in 'table1'
         '''
-        return self.row
+        return self.row_len
 
     def _get_layout(self):
         return self.layout
@@ -92,17 +92,17 @@ class table:
         return heads[column]
 
 
-    def print(self):
+    def display(self):
         '''
         Syntax :
-            table1.print()
+            table1.display()
         Output:
             prints data in 'table1' in tabular form
             Here is how the table would be printed:
-                   Head1    |  Head2
-                 -----------+-----------
-                 content-A1 | Content-B1
-                 content-A2 | Content-B2
+                 |Head-A |  Head-B | 
+                 -------------------
+                 |content-A1 | Content-B1 | 
+                 |content-A2 | Content-B2 | 
         
         '''
         table = self._get_layout()
@@ -114,10 +114,12 @@ class table:
 
         print("\n-----------",end='')
 
-        for column in range(self.row()):
-            print()
-            for row in heads:
-                print(table[row][column], end = ' | ')
+        for row in range(self.row_len):
+            print('\n',end='|')
+            for column in heads:
+                print(table[column][row], end = ' | ')
+        print()
+        return
 
     def cell(self, row, column):
         '''
@@ -132,9 +134,9 @@ class table:
         If the cell is not defined in the table or the rows or column given is out of bounds, a CellOutOfBoundsException is raised
         '''
         table = self._get_layout()
-        if row > self.row:
+        if row > self.row_len:
             raise CellOutOfBoundsException(row, column)
-        elif column > self.column:
+        elif column > self.column_len:
             raise CellOutOfBoundsException(row,column)
 
         if type(row) is str:
@@ -155,7 +157,7 @@ class table:
         For example, the row_number of 2 would return a list containing the values from second row from all columns
         A 'CellOutOfBoundsException' is raised if the specified row exceeds the number of rows in the table
         '''
-        if row_number > self.row:
+        if row_number > self.row_len:
             raise CellOutOfBoundsException(row_number, 'X')
 
         table = self._get_layout()
@@ -178,7 +180,7 @@ class table:
                                  the heading of the column,(as string), whose values must be returned
             '''
 
-        if column_number > self.column:
+        if column_number > self.column_len:
             raise CellOutOfBoundsException('X', column_number)
 
         if type(column_number) is str:
