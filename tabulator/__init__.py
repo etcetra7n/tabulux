@@ -17,7 +17,7 @@ class CellOutOfBoundsException(Exception):
     def __str__(self):
         return f'Row = {self.row}; Column = {self.column}'
 
-class table:
+class table: 
     '''
     A table object is created using the table class
         Syntax : 
