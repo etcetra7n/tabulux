@@ -21,13 +21,13 @@ class table:
     '''
     A table object is created using the table class
         Syntax : 
-        table1 = table(
+        table_obj = table(
             {
                 'Head1':['content-A1',content-A2',],
                 'Head2':['content-B1',content-B2',],
             }
         ) 
-        Now the table object is stored in the variable 'table1'
+        Now the table object is stored in the variable 'table_obj'
         Note: every column should contain same number of elements'
     '''
     def __init__(self, layout):
@@ -38,23 +38,23 @@ class table:
     def column_length(self):
         '''
         Syntax:
-            table1.column_length()
+            table_obj.column_length()
 
         where:
-            table1 = a table object
+            table_obj = a table object
 
-        returns integer representing the number of columns in 'table1'
+        returns integer representing the number of columns in 'table_obj'
         '''
         return self.column_len
     def row_length(self):
         '''
         Syntax:
-            table1.row_length()
+            table_obj.row_length()
 
          where:
-            table1 = a table object
+            table_obj = a table object
 
-        returns integer representing the number of rows in 'table1'
+        returns integer representing the number of rows in 'table_obj'
         '''
         return self.row_len
 
@@ -64,12 +64,12 @@ class table:
     def heads(self):
         '''
         Syntax :
-            table1.heads()
+            table_obj.heads()
            
             where:
-               table1 = a table object
+               table_obj = a table object
 
-        returns a 'list' of string representing the each heading of 'table1'
+        returns a 'list' of string representing the each heading of 'table_obj'
         '''
         table = self._get_layout()
         heads = []
@@ -79,12 +79,12 @@ class table:
     def head(self, column):
         '''
         Syntax:
-            table1.head(column_number):
+            table_obj.head(column_number):
             where:
-               table1         =  A table object
+               table_obj      =  A table object
                column_number  =  the column number, whose heading you want, as an integer
 
-        returns the heading of the specified 'column_number' of 'table1' as a string.
+        returns the heading of the specified 'column_number' of 'table_obj' as a string.
         '''
 
         heads = self.heads()
@@ -150,9 +150,9 @@ class table:
         '''
         You can use the row() method to get all the row elements in the table as a list
         Syntax:
-            table1.row(row_number)
+            table_obj.row(row_number)
             where:
-                table1      = a table object
+                table_obj   = a table object
                 row_number  = an integer representing the row number (starts from 0)
         For example, the row_number of 2 would return a list containing the values from second row from all columns
         A 'CellOutOfBoundsException' is raised if the specified row exceeds the number of rows in the table
@@ -173,9 +173,9 @@ class table:
         '''
         You could use the getColumn function to get list containing all the whole column, under a specified row
         Syntax:
-            table1.column(column_number)
+            table_obj.column(column_number)
             where:
-                table1         = a table object
+                table_obj      = a table object
                 column_number  = an integer which represents column number, whose cells must be returned(starting from 0) or,
                                  the heading of the column,(as string), whose values must be returned
             '''
