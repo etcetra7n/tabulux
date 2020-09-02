@@ -11,7 +11,7 @@ Create a table object using the *`table`* class
 
 syntax:
 
-    table_obj = table(   
+    table_obj = tabulux.table(   
         {   
         'Head-A':['Content-A1','Content-A2',],   
         'Head-B':['Content-B1','Content-B2',],   
