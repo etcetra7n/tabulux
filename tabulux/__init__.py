@@ -134,9 +134,9 @@ class table:
         If the cell is not defined in the table or the rows or column given is out of bounds, a CellOutOfBoundsException is raised
         '''
         table = self._get_layout()
-        if row > self.row_len:
+        if row >= self.row_len:
             raise CellOutOfBoundsException(row, column)
-        elif column > self.column_len:
+        elif column >= self.column_len:
             raise CellOutOfBoundsException(row,column)
 
         if type(row) is str:
@@ -157,7 +157,7 @@ class table:
         For example, the row_number of 2 would return a list containing the values from second row from all columns
         A 'CellOutOfBoundsException' is raised if the specified row exceeds the number of rows in the table
         '''
-        if row_number > self.row_len:
+        if row_number >= self.row_len:
             raise CellOutOfBoundsException(row_number, 'X')
 
         table = self._get_layout()
@@ -180,10 +180,54 @@ class table:
                                  the heading of the column,(as string), whose values must be returned
             '''
 
-        if column_number > self.column_len:
+        if column_number >= self.column_len:
             raise CellOutOfBoundsException('X', column_number)
 
         if type(column_number) is str:
             return self.layout[column_number]
         elif type(column_number) is int:
             return self.layout[self.head(column_number)]
+
+    def change_content(self, row, column, new_content):
+        '''
+        Use change_content() method to change the heading of a cell
+        Syntax:
+            table_obj.change_content(row_ID, column_ID, new_content)
+        where, 
+            table_obj   =  a table object
+            row_ID      =  an integer representing the column number(starts from 0)
+            column_ID   =  an integer representing the column number(starts from 0), or the heading of the column as a string
+            new_content =  a string containg the new content
+
+        changes the heading of the specified column to 'new_head'
+        Aditionaly, it also returns the old content of the cell
+        '''
+
+        if row >= self.row_len:
+            raise CellOutOfBoundsException(row, column)
+        if column >= self.column_len:
+            raise CellOutOfBoundsException(row, column)
+        
+        if type(column) is str:
+            old_content = self.layout[column][row]
+            self.layout[column][row] = new_content
+            return old_content
+        elif type(column) is int:
+            heads = self.heads()
+            old_content = self.layout[heads[column]][row]
+            self.layout[heads[column]][row] = new_content
+            return old_content
+        else:
+            raise TypeError
+
+
+
+
+
+
+
+
+
+
+
+        
