@@ -247,7 +247,35 @@ class table:
         except:
             raise ValueError
 
-    
+        def add_all(self, x1, x2, y1, y2):
+            '''
+            The add_all() method can be used to add all the cells from a cell to another cell, if all their values are integers
+            Syntax:
+                table_obj.add_all(from_row, from_column, to_row, to_column)
+
+            where:
+                table_obj   = a table object
+                from_row    = row number of the first cell
+                from_column = column number of the first cell
+                to_row      = row number of the last cell
+                to_column   = column number of the last cell
+
+            returns the sum of all the content of cells between, and including the specified cells
+            If any cell content cannot be converted to an integer, 'ValueError' is raised
+            '''
+            try:
+                if type(y1)is int:
+                    y1 = self.head(y1)
+                if type(y2) is int:
+                    y2 = self.head(y2)
+            except:
+                raise CellOutOfBoundsException(y1, y2)
+
+            values = []
+            heads = self.heads()
+
+            try:
+                values.append(self.layout[
 
 
 
