@@ -220,8 +220,34 @@ class table:
         else:
             raise TypeError
 
+    def add(self, x1, y1, x2, y2):
+        '''
+        The add method can be used to add two cells, if the cells are integers or can be converted to integers,
+        Syntax:
+            table_obj.add(row1, column1, row2, column2)
+        where:
+            table_obj  = a table object
+            row1       = cell row of the first cell as an integer
+            column1    = cell column of the first cell as an integer, or the heading of the column as a string
+            row2       = cell row of the second cell as an integer
+            column2    = cell column of the second cell as an integer, or the heading of the column as a string
 
+        returns the sum of the two cells
 
+        '''
+        try:
+            if type(y1)is int:
+                y1 = self.head(y1)
+            if type(y2) is int:
+                y2 = self.head(y2)
+        except:
+            raise CellOutOfBoundsException(y1, y2)
+        try:    
+            return ((int(self.layout[y1][x1])) + (int(self.layout[y2][x2])))
+        except:
+            raise ValueError
+
+    
 
 
 

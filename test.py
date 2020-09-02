@@ -2,14 +2,14 @@ import tabulux
 
 class unittest:
     def create_test_cases():
-        case_1 = table(
+        case_1 = tabulux.table(
             {
             'head-A':['Content-A1','Content-A2','Content-A3','Content-A4'],
             'Head-B':['Content-B1','Content-B2','Content-B3','Content-B4'],
             'Head-C':['Content-C1','Content-C2','Content-C3','Content-C4']
             }
         )
-        case_2 = table(
+        case_2 = tabulux.table(
             {
             'Name':['John','Peter'],
             'Age' :['15'  ,'20'   ],
@@ -182,6 +182,33 @@ class unittest:
      # </column method>
 
         print('\n--------------------------------------------\n')
+
+     # <chage_content method>
+        print("running 'column' method:")
+       # <test case 1>
+        print("    test case 1:")
+        print("        used new_content = 'new content")
+        print("        used row         = 3")
+        print("        used column      = 2")
+        print("        new table = ",end='')
+        test_case_1.change_content(3,2,'new content')
+        print(test_case_1.display())
+       # </test case 1>
+       # <test case 2>
+        print("    test case 2:")
+        print("        used new_content = 'new content'")
+        print("        used row         = 1")
+        print("        used column      = 0")
+        print("        new table: ",end='')
+        test_case_2.change_content(1,0,'new content')
+        test_case_2.diplay()
+       # </test case 2>
+     # </chage_content method>
+
+        print('\n--------------------------------------------\n')
+
+     # <>
+
 
 if __name__ == "__main__":
     unittest.test()

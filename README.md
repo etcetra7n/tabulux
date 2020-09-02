@@ -30,14 +30,14 @@ A Virtul table of the above object can be imagined like this:
 Available functions and methods:
 ===============================
 
-+ column_length() - returns the column length 
-+ row_length() - returns the row length
-+ column(column_ID) - returns all the elements in the `column_ID` as a list.
-+ row(row_ID) - returns all elements of the `row_ID`
-+ heads() - returns the all the headings of the table as a list of strings
-+ head(column_ID) - returns the heading of the specified column as a string
-+ cell(row_ID, column_ID) - returns the content of the cell at the specified location
-+ display() - prints the data in the table in a tabulated form
++ **column_length()** - returns the column length 
++ **row_length()** - returns the row length
++ **column(column_ID)** - returns all the elements in the `column_ID` as a list.
++ **row(row_ID)** - returns all elements of the `row_ID`
++ **heads()** - returns the all the headings of the table as a list of strings
++ **head(column_ID)** - returns the heading of the specified column as a string
++ **cell(row_ID, column_ID)** - returns the content of the cell at the specified location
++ **display()** - prints the data in the table in a tabulated form
 
 column_length()
 ----------------
@@ -172,6 +172,10 @@ Output:
 This method does not return anything
 
 
+
+
 This needs a lot of development, and this project is hosted on github for developmental purpose, 
 in which anyone can contribute, smallest of which are appreciated. 
 [Take me to this project's github repository page](https://github.com/John-pix/Tabulux-Python)
+
+
