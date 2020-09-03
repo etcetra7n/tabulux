@@ -1,11 +1,11 @@
-# -*- encoding: UTF-8 -*-
-# -*- Indentation: 4 Spaces -*-
+# -*- encoding: UTF-8 -*- 
+# -*- Indentation: 4 Spaces -*- 
 
 import pyperclip
 
 '''
 A package for tablular operation and for making making tabular data
-This needs a lot of development, and this project is hosted on github for developmental purpose, 
+This project is hosted on github for developmental purpose, 
 in which anyone can contribute, smallest of which are appreciated
 Check out the source code at https://github.com/John-pix/Tabulator-Python
 '''

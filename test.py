@@ -208,7 +208,39 @@ class unittest:
 
         print('\n--------------------------------------------\n')
 
-     # <>
+     # <add method>
+        print("running 'add' method:")
+       # <test case 1>
+        print("    test case 1 not possible as there are no integer cells")
+
+       # </test case 1>
+       # <test case 2>
+        print("    test case 2:")
+        print("        first cell addres   = row- 0, column- 1")
+        print("        second cell address = row- 1, column- 1")
+        print("        return value= ",end='')
+        print(test_case_2.add(0,1,1,1))
+       # </test case 2>
+     # </add method>
+
+        print('\n--------------------------------------------\n')
+
+     # <add_all method>
+        print("running 'add_all' method:")
+       # <test case 1>
+        print("    test case 1 not possible as there are no integer cells")
+
+       # </test case 1>
+       # <test case 2>
+        print("    test case 2:")
+        print("        first cell addres   = row- 0, column- 1")
+        print("        second cell address = row- 1, column- 1")
+        print("        return value= ",end='')
+        print(test_case_2.add_all(0,1,1,1))
+       # </test case 2>
+     # </add_all method>
+
+        print('\n--------------------------------------------\n')
 
 
 if __name__ == "__main__":
