@@ -1,5 +1,8 @@
 # -*- encoding: UTF-8 -*-
 # -*- Indentation: 4 Spaces -*-
+
+import pyperclip
+
 '''
 A package for tablular operation and for making making tabular data
 This needs a lot of development, and this project is hosted on github for developmental purpose, 
@@ -121,30 +124,41 @@ class table:
         print()
         return
 
-    def cell(self, row, column):
+    def cell(self, row, column, copy= False):
         '''
         Syntax:
-            table1.cell(row, column)
+            table_obj.cell(row, column)
             where,
-            table1 = table object
-            row    = integer representing the row number (starting from 0), or, 
+            table_obj = table object
+            row    = integer representing the row number (starting from 0) 
+            column = integer representing the column number (starting from 0), or 
                      the heading of the column as string
-            column = integer representing the column number (starting from 0)
-        returns the Cell Content of the specified location as String. 
+        returns the Cell Content of the specified location as String.
+        
+        you can also copy the content of the cell by setting the 'copy' argument to True
+        Syntax:
+            table_obj.cell(row, column, copy=True)
+            
+        This will return the content and copy the content to your clipboard, which can be pasted elswhere
+        
         If the cell is not defined in the table or the rows or column given is out of bounds, a CellOutOfBoundsException is raised
         '''
+        
         table = self._get_layout()
+        
         if row >= self.row_len:
             raise CellOutOfBoundsException(row, column)
         elif column >= self.column_len:
             raise CellOutOfBoundsException(row,column)
 
-        if type(row) is str:
-            return self.layout[row][column]
+        if type(column) is str:
+            if copy == True:
+                pyperclip.copy(table[row][column])
+            return table[row][column]
         elif type(column) is int:
-            table = self._get_layout()
-
-        return table[self.heads()[row]][column]
+            if copy == True:
+                pyperclip.copy(table[self.heads()[row]][column])
+            return table[self.heads()[row]][column]
 
     def row(self, row_number):
         '''
@@ -188,7 +202,7 @@ class table:
         elif type(column_number) is int:
             return self.layout[self.head(column_number)]
 
-    def change_content(self, row, column, new_content):
+    def change_content(self, row, column, new_content, paste=False):
         '''
         Use change_content() method to change the heading of a cell
         Syntax:
@@ -198,6 +212,13 @@ class table:
             row_ID      =  an integer representing the column number(starts from 0)
             column_ID   =  an integer representing the column number(starts from 0), or the heading of the column as a string
             new_content =  a string containg the new content
+
+        you can also set a cell content to whatever text copied to your clipboard, by setting the 'paste' argument to True
+        Syntax:
+            table_obj.change_content(row_ID, column_ID, new_content, paste=True)
+        you the 'new_content' argument is ignored if paste is set to True, so you can leave the new content as ""
+        This cange the cell in the specified location to the text in the clipboard. This feature supports only plain text,
+        so it paste images copied to your clipboard
 
         changes the heading of the specified column to 'new_head'
         Aditionaly, it also returns the old content of the cell
@@ -210,12 +231,18 @@ class table:
         
         if type(column) is str:
             old_content = self.layout[column][row]
-            self.layout[column][row] = new_content
+            if paste == True:
+                self.layout[column][row] = pyperclip.paste()
+            else:
+                self.layout[column][row] = new_content
             return old_content
         elif type(column) is int:
             heads = self.heads()
             old_content = self.layout[heads[column]][row]
-            self.layout[heads[column]][row] = new_content
+            if paste == True:
+                self.layout[heads[column]][row] = pyperclip.paste()
+            else:
+                self.layout[heads[column]][row] = new_content
             return old_content
         else:
             raise TypeError

@@ -138,10 +138,11 @@ class unittest:
        # </test case 1>
        # <test case 2>
         print("    test case 2:")
-        print("        used column number for cell = 1")
-        print("        used row number for cell = 1\n")
+        print("        used column number for cell = 1     ")
+        print("        used row number for cell    = 1     ")
+        print("        copy                        = True\n")
         print("        output: ",end='')
-        print(test_case_2.cell(1,1))
+        print(test_case_2.cell(1,1,copy=True))
        # </test case 2>
      # </cell method>
 
@@ -184,7 +185,7 @@ class unittest:
         print('\n--------------------------------------------\n')
 
      # <chage_content method>
-        print("running 'column' method:")
+        print("running 'chage_content' method:")
        # <test case 1>
         print("    test case 1:")
         print("        used new_content = 'new content")
@@ -196,11 +197,11 @@ class unittest:
        # </test case 1>
        # <test case 2>
         print("    test case 2:")
-        print("        used new_content = 'new content'")
+        print("        paste            = True")
         print("        used row         = 1")
         print("        used column      = 0")
         print("        new table: ",end='')
-        test_case_2.change_content(1,0,'new content')
+        test_case_2.change_content(1,0,'new content',paste=True)
         test_case_2.diplay()
        # </test case 2>
      # </chage_content method>
