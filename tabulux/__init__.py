@@ -245,9 +245,44 @@ class table:
         try:    
             return ((int(self.layout[y1][x1])) + (int(self.layout[y2][x2])))
         except:
-            raise ValueError
+            raise TypeError
 
-    
+    def add_all(self, x1, x2, y1, y2):
+        '''
+        The add_all() method can be used to add all the cells from a cell to another cell, if all their values are integers
+        Syntax:
+            table_obj.add_all(from_row, from_column, to_row, to_column)
+
+        where:
+            table_obj   = a table object
+            from_row    = row number of the first cell
+            from_column = column number of the first cell
+            to_row      = row number of the last cell
+            to_column   = column number of the last cell
+
+        returns the sum of all the content of cells between, and including the specified cells
+        If any cell content cannot be converted to an integer, 'TypeError' is raised
+        '''
+        try:
+            if type(y1)is str:
+                y1 = self.heads().index(y1)
+            if type(y2) is str:
+                y2 = (self.heads().index(y2))+1
+        except:
+            raise CellOutOfBoundsException(y1, y2)
+
+        x2 += 1
+        total_sum = 0
+        heads = self.heads()
+        table = self._get_layout()
+        try:
+            for head in heads[y1:y2]:
+                for row in table[head][x1:x2]:
+                    total_sum += (int(row))
+        except:
+            raise 
+
+        return total_sum
 
 
 
