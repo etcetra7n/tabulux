@@ -38,7 +38,7 @@ class table:
         self.layout = layout
         self.row_len = len(layout[list(layout)[0]])
         self.column_len = len(layout)
-    def column_length(self):
+    def column_length(self, copy=False):
         '''
         Syntax:
             table_obj.column_length()
@@ -47,7 +47,15 @@ class table:
             table_obj = a table object
 
         returns integer representing the number of columns in 'table_obj'
+
+        You can also copy the result by setting the 'copy' attribute to True
+        Syntax:
+            table_obj.column_length(copy=True)
+        The above code will copy the column length to your clipboard, which can be pasted elsewhere
+        'copy' attribute is set to False by default
         '''
+        if copy:
+            pyperclip.copy(self.column_len)
         return self.column_len
     def row_length(self):
         '''
@@ -58,7 +66,15 @@ class table:
             table_obj = a table object
 
         returns integer representing the number of rows in 'table_obj'
+
+        You can also copy the result by setting the 'copy' attribute to True
+        Syntax:
+            table_obj.row_length(copy=True)
+        The above code will copy the row length to your clipboard, which can be pasted elsewhere
+        'copy' attribute is set to False by default
         '''
+        if copy:
+            pyperclip.copy(self.row_len)
         return self.row_len
 
     def _get_layout(self):
@@ -79,18 +95,28 @@ class table:
         for head in table:
             heads.append(head)
         return heads
-    def head(self, column):
+    def head(self, column, copy=False):
         '''
+        The head() method is used to get a specific heading of the table
         Syntax:
-            table_obj.head(column_number):
+            table_obj.head(column_number)
             where:
                table_obj      =  A table object
                column_number  =  the column number, whose heading you want, as an integer
 
         returns the heading of the specified 'column_number' of 'table_obj' as a string.
+
+        You can also set the 'copy' attribute to True to copy the head to your clipboard
+        Syntax:
+            table_obj.head(column_number, copy=True)
+
+        The above code will copy the head to your clipboard as a text which can be pasted elsewhere
         '''
 
         heads = self.heads()
+
+        if copy:
+            pyperclip.copy(heads[column])
  
         return heads[column]
 
@@ -247,7 +273,7 @@ class table:
         else:
             raise TypeError
 
-    def add(self, x1, y1, x2, y2):
+    def add(self, x1, y1, x2, y2, copy=False):
         '''
         The add method can be used to add two cells, if the cells are integers or can be converted to integers,
         Syntax:
@@ -259,6 +285,13 @@ class table:
             row2       = cell row of the second cell as an integer
             column2    = cell column of the second cell as an integer, or the heading of the column as a string
 
+        You can also additionally, copy the result to your clipboard, by setting the 'copy' attribute to True.
+        
+        Syntax:
+            table_obj.add(row1, column1, row2, column2, copy=True)
+
+        This will copy the result to your clipboard.
+
         returns the sum of the two cells
 
         '''
@@ -269,12 +302,14 @@ class table:
                 y2 = self.head(y2)
         except:
             raise CellOutOfBoundsException(y1, y2)
-        try:    
+        try:
+            if copy:
+                pyperclip.copy(str(int(self.layout[y1][x1])) + (int(self.layout[y2][x2])))
             return ((int(self.layout[y1][x1])) + (int(self.layout[y2][x2])))
         except:
             raise TypeError
 
-    def add_all(self, x1, x2, y1, y2):
+    def add_all(self, x1, x2, y1, y2, copy=False):
         '''
         The add_all() method can be used to add all the cells from a cell to another cell, if all their values are integers
         Syntax:
@@ -288,6 +323,13 @@ class table:
             to_column   = column number of the last cell
 
         returns the sum of all the content of cells between, and including the specified cells
+
+        You can also additionally, copy the result to your clipboard, by setting the 'copy' attribute to True.
+        
+        Syntax:
+            table_obj.add_all(from_row, from_column, to_row, to_column, copy=True)
+
+        This will copy the result to your clipboard.
         If any cell content cannot be converted to an integer, 'TypeError' is raised
         '''
         try:
@@ -307,7 +349,10 @@ class table:
                 for row in table[head][x1:x2]:
                     total_sum += (int(row))
         except:
-            raise 
+            raise
+
+        if copy:
+            pyperclip.copy(str(total_sum))
 
         return total_sum
 
