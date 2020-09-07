@@ -33,7 +33,7 @@ class table:
     '''
     A table object is created using the table class
         Syntax : 
-        table_obj = table(
+        table_obj = tabulux.table(
             {
                 'Head1':['content-A1',content-A2',],
                 'Head2':['content-B1',content-B2',],
@@ -47,6 +47,7 @@ class table:
         self.layout = layout
         self.row_len = len(layout[list(layout)[0]])
         self.column_len = len(layout)
+        
     def column_length(self, copy=False):
         '''
         Syntax:
