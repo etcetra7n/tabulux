@@ -1,4 +1,5 @@
 import tabulux
+import pyperclip
 
 class unittest:
     def create_test_cases():
@@ -191,18 +192,20 @@ class unittest:
         print("        used new_content = 'new content")
         print("        used row         = 3")
         print("        used column      = 2")
-        print("        new table = ",end='')
+        print("        new table = ")
         test_case_1.change_content(3,2,'new content')
-        print(test_case_1.display())
+        test_case_1.display()
        # </test case 1>
        # <test case 2>
         print("    test case 2:")
         print("        paste            = True")
         print("        used row         = 1")
         print("        used column      = 0")
-        print("        new table: ",end='')
+        pyperclip.copy("new")
+        print("        content in clipboard = 'new'")
+        print("        new table: ")
         test_case_2.change_content(1,0,'new content',paste=True)
-        test_case_2.diplay()
+        test_case_2.display()
        # </test case 2>
      # </chage_content method>
 
@@ -239,6 +242,26 @@ class unittest:
         print(test_case_2.add_all(0,1,1,1))
        # </test case 2>
      # </add_all method>
+
+        print('\n--------------------------------------------\n')
+
+     # <html method>
+        print("running 'html' method:")
+       # <test case 1>
+        print("    test case 1:")
+        print("        used method call attributes: display=True, copy=True, indent=4")
+        print("        Output: ")
+        test_case_1.html(display=True, copy=True, indent=4)
+        print("        printing clipboard to ensure that copy-paste feature is working")
+        print(pyperclip.paste())
+       # </test case 1>
+       # <test case 2>
+        print("    test case 2:")
+        print("        used method call attributes: display=False, copy=False, indent=2")
+        print("        return value: ")
+        print(test_case_2.html(display=False, copy=False, indent=2))
+       # </test case 2>
+     # </html method>
 
         print('\n--------------------------------------------\n')
 
