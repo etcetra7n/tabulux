@@ -66,7 +66,7 @@ class table:
         if copy:
             pyperclip.copy(self.column_len)
         return self.column_len
-    def row_length(self):
+    def row_length(self, copy=False):
         '''
         Syntax:
             table_obj.row_length()
@@ -342,20 +342,21 @@ class table:
         If any cell content cannot be converted to an integer, 'TypeError' is raised
         '''
         try:
-            if type(y1)is str:
+            if type(x2)is str:
                 y1 = self.heads().index(y1)
             if type(y2) is str:
-                y2 = (self.heads().index(y2))+1
+                y2 = (self.heads().index(y2)) 
         except:
             raise CellOutOfBoundsException(y1, y2)
 
-        x2 += 1
+        y1 += 1
+        y2 += 1 #'+1' is necessary because the iteration must include that cell too
         total_sum = 0
         heads = self.heads()
         table = self._get_layout()
         try:
-            for head in heads[y1:y2]:
-                for row in table[head][x1:x2]:
+            for head in heads[x2:y2]:
+                for row in table[head][x1:y1]:
                     total_sum += (int(row))
         except:
             raise
