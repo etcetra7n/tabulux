@@ -1,13 +1,22 @@
 # -*- encoding: UTF-8 -*- 
 # -*- Indentation: 4 Spaces -*- 
 
-import pyperclip
+import os
+import sys
+try:
+    import pyperclip
+except ImportError:
+    pass
 
 '''
 A package for tablular operation and for making making tabular data
 This project is hosted on github for developmental purpose, 
 in which anyone can contribute, smallest of which are appreciated
 Check out the source code at https://github.com/John-pix/Tabulator-Python
+
+Requirments:
+    'pyperclip' module for copy-paste feature, you can still use without it but you cant use the copy-past features
+    download pyperclip from https://pypi.org/project/pyperclip/
 '''
 class CellOutOfBoundsException(Exception):
 
@@ -30,8 +39,8 @@ class table:
                 'Head2':['content-B1',content-B2',],
             }
         ) 
-        Now the table object is stored in the variable 'table_obj'
-        Note: every column should contain same number of elements'
+    Now the table object is stored in the variable 'table_obj'
+    Note: every column should contain same number of elements'
     '''
     def __init__(self, layout):
         
@@ -356,11 +365,57 @@ class table:
 
         return total_sum
 
+    def html(self, display=False, copy=False, indent=4):
+        '''
+        The 'html()' method os used to get the html snippet of a table.
+        Syntax:
+            table_obj.html(display={True/False}, copy={True/False}, indent={int})
 
+        where:
+            table_obj = a table object
+            display   = this attribute will display the html snippet in the console\terminal, if set to True(False by default)
+            copy      = this attribute, if set to True, copies the html snippet to you clipboard, and can by pasted to your html file(False by default)
+            indent    = indentation spaces that sould be applied (4 by default)
 
+        returns the html snippet of the table as a string from, and including <table> to </table>
+        '''
+        html = ""
+        heads = self.heads()
+        table = self._get_layout()
+        # The newline charecter for windows is "\r\n", but in linux, it is "\n", so the platform would have to be checked using sys.platform to enable cross-platform functionality
+        if sys.platform.startswith('win'):
+            html += "<table>\r\n"
+            html += " "*(indent) + "<tr>" + "\r\n"
+            for head in heads:
+                html += " "*(indent*2) + f"<th>{head}</th>" + "\r\n"
+            html += " "*(indent) + "</tr>" + "\r\n"
 
+            for row in range(self.row_len):
+                html += " "*(indent) + "<tr>" + "\r\n"
+                for head in heads:
+                    html += " "*(indent*2) + f"<td>{table[head][row]}</td>" + "\r\n"
+                html += " "*(indent) + "</tr>" + "\r\n"
+                
+                
+        else: # most other platforms use '\n' as newline
+            html += "<table>\n"
+            html += " "*(indent) + "<tr>" + "\n"
+            for head in heads:
+                html += " "*(indent*2) + f"<th>{head}</th>" + "\n"
+            html += " "*(indent) + "</tr>" + "\n"
 
+            for row in range(self.row_len):
+                html += " "*(indent) + "<tr>" + "\n"
+                for head in heads:
+                    html += " "*(indent*2) + f"<td>{table[head][row]}</td>" + "\n"
+                html += " "*(indent) + "</tr>" + "\n"
 
+        html += "</table>"
 
+        if display:
+            print(html)
 
-        
+        if copy:
+            pyperclip.copy(html)
+
+        return html
