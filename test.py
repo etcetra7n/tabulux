@@ -185,15 +185,15 @@ class unittest:
 
         print('\n--------------------------------------------\n')
 
-     # <chage_content method>
-        print("running 'chage_content' method:")
+     # <chage method>
+        print("running 'chage' method:")
        # <test case 1>
         print("    test case 1:")
         print("        used new_content = 'new content")
         print("        used row         = 3")
         print("        used column      = 2")
         print("        new table = ")
-        test_case_1.change_content(3,2,'new content')
+        test_case_1.change(3,2,'new content')
         test_case_1.display()
        # </test case 1>
        # <test case 2>
@@ -204,7 +204,7 @@ class unittest:
         pyperclip.copy("new")
         print("        content in clipboard = 'new'")
         print("        new table: ")
-        test_case_2.change_content(1,0,'new content',paste=True)
+        test_case_2.change(1,0,'new content',paste=True)
         test_case_2.display()
        # </test case 2>
      # </chage_content method>
