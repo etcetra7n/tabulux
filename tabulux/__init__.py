@@ -238,11 +238,11 @@ class table:
         elif type(column_number) is int:
             return self.layout[self.head(column_number)]
 
-    def change_content(self, row, column, new_content, paste=False):
+    def change(self, row, column, new_content, paste=False):
         '''
-        Use change_content() method to change the heading of a cell
+        Use change() method to change the heading of a cell
         Syntax:
-            table_obj.change_content(row_ID, column_ID, new_content)
+            table_obj.change(row_ID, column_ID, new_content)
         where, 
             table_obj   =  a table object
             row_ID      =  an integer representing the column number(starts from 0)
@@ -251,7 +251,7 @@ class table:
 
         you can also set a cell content to whatever text copied to your clipboard, by setting the 'paste' argument to True
         Syntax:
-            table_obj.change_content(row_ID, column_ID, new_content, paste=True)
+            table_obj.change(row_ID, column_ID, new_content, paste=True)
         you the 'new_content' argument is ignored if paste is set to True, so you can leave the new content as ""
         This cange the cell in the specified location to the text in the clipboard. This feature supports only plain text,
         so it paste images copied to your clipboard
