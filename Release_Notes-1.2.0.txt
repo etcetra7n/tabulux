@@ -1,4 +1,4 @@
-Latest Features in 1.1.0:
+Latest Features in 1.2.0:
 
 -Added copy-paste feature for both new and pre-existing methods
 -Added 'Cell' method to get the content of a specific cell
