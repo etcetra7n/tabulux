@@ -13,6 +13,7 @@ A package for tablular operation and for making making tabular data
 This project is hosted on github for developmental purpose, 
 in which anyone can contribute, smallest of which are appreciated
 Check out the source code at https://github.com/John-pix/Tabulator-Python
+Download the documentation at https://drive.google.com/uc?export=download&id=1Hg0727A023LMGTM4IfEcFh3R2ytVMvU6
 
 Requirments:
     'pyperclip' module for copy-paste feature, you can still use without it but you cant use the copy-past features
@@ -50,38 +51,34 @@ class table:
         
     def column_length(self, copy=False):
         '''
+        Use this method when you need the column length of the table
+
         Syntax:
-            table_obj.column_length()
+
+            table_obj.column_length(copy={True/False})
 
         where:
-            table_obj = a table object
+          `table_obj` = a table object
+          `copy`      = This attribute copies the result as text to your clipboard (False by default)
 
-        returns integer representing the number of columns in 'table_obj'
-
-        You can also copy the result by setting the 'copy' attribute to True
-        Syntax:
-            table_obj.column_length(copy=True)
-        The above code will copy the column length to your clipboard, which can be pasted elsewhere
-        'copy' attribute is set to False by default
+        returns integer representing the number of column in `table_obj`
         '''
         if copy:
             pyperclip.copy(self.column_len)
         return self.column_len
     def row_length(self, copy=False):
         '''
+        Use this method when you need the number of rows of the table
+
         Syntax:
-            table_obj.row_length()
 
-         where:
-            table_obj = a table object
+            table_obj.row_length(copy={True/False})
 
-        returns integer representing the number of rows in 'table_obj'
+        where:
+          `table_obj` = a table object
+          `copy`      = This attribute copies the result as text to your clipboard (False by default)
 
-        You can also copy the result by setting the 'copy' attribute to True
-        Syntax:
-            table_obj.row_length(copy=True)
-        The above code will copy the row length to your clipboard, which can be pasted elsewhere
-        'copy' attribute is set to False by default
+        returns integer representing the number of rows in `table_obj`
         '''
         if copy:
             pyperclip.copy(self.row_len)
@@ -107,20 +104,18 @@ class table:
         return heads
     def head(self, column, copy=False):
         '''
-        The head() method is used to get a specific heading of the table
+        Use head() when you want a heading of a specific column from the table
+
         Syntax:
-            table_obj.head(column_number)
-            where:
-               table_obj      =  A table object
-               column_number  =  the column number, whose heading you want, as an integer
 
-        returns the heading of the specified 'column_number' of 'table_obj' as a string.
+            table_obj.head(column_number, copy={True/False})
 
-        You can also set the 'copy' attribute to True to copy the head to your clipboard
-        Syntax:
-            table_obj.head(column_number, copy=True)
+        where:
+          `table_obj`      =  A table object
+          `column_number`  =  An integer representing the column number, whose heading you want
+          `copy`           =  A boolean- if True, copies the heading to your clipboard(False by default)
 
-        The above code will copy the head to your clipboard as a text which can be pasted elsewhere
+        returns the heading of the specified column of the table as a string.
         '''
 
         heads = self.heads()
@@ -163,21 +158,20 @@ class table:
     def cell(self, row, column, copy= False):
         '''
         Syntax:
-            table_obj.cell(row, column)
-            where,
-            table_obj = table object
-            row    = integer representing the row number (starting from 0) 
-            column = integer representing the column number (starting from 0), or 
-                     the heading of the column as string
-        returns the Cell Content of the specified location as String.
-        
-        you can also copy the content of the cell by setting the 'copy' argument to True
-        Syntax:
-            table_obj.cell(row, column, copy=True)
-            
-        This will return the content and copy the content to your clipboard, which can be pasted elswhere
-        
-        If the cell is not defined in the table or the rows or column given is out of bounds, a CellOutOfBoundsException is raised
+
+        Use this method when you need the cell content of a cell
+
+            table_obj.cell(row_ID, column_ID, copy={True/False})
+
+        where,
+          `table_obj` = table object
+          `row`       = integer representing the row number (starting from 0), or, the heading of the column as a string
+          `column`    = integer representing the column number (starting from 0)
+          `copy`      = a boolean, if true- copies the result to your clipboard(False,by default)
+
+        returns the Cell Content of the specified location as String. 
+
+        If the cell is not defined in the table or the rows or column given is out of bounds, a `CellOutOfBoundsException` is raised
         '''
         
         table = self._get_layout()
@@ -240,24 +234,30 @@ class table:
 
     def change(self, row, column, new_content, paste=False):
         '''
-        Use change() method to change the heading of a cell
+        Use change() method to change the content of a cell
+
         Syntax:
+
             table_obj.change(row_ID, column_ID, new_content)
+            
         where, 
-            table_obj   =  a table object
-            row_ID      =  an integer representing the column number(starts from 0)
-            column_ID   =  an integer representing the column number(starts from 0), or the heading of the column as a string
-            new_content =  a string containg the new content
+          table_obj   =  a table object
+          row_ID      =  an integer representing the column number(starts from 0)
+          column_ID   =  an integer representing the column number(starts from 0), or the heading of the column as a string
+          new_content =  a string containg the new content
+          
+        changes the of the specified column to the content in `new_content`
 
         you can also set a cell content to whatever text copied to your clipboard, by setting the 'paste' argument to True
-        Syntax:
-            table_obj.change(row_ID, column_ID, new_content, paste=True)
-        you the 'new_content' argument is ignored if paste is set to True, so you can leave the new content as ""
-        This cange the cell in the specified location to the text in the clipboard. This feature supports only plain text,
-        so it paste images copied to your clipboard
 
-        changes the heading of the specified column to 'new_head'
-        Aditionaly, it also returns the old content of the cell
+        Syntax:
+
+            table_obj.change(row_ID, column_ID, new_content, paste=True)
+            
+        the 'new_content' is ignored if paste is set to True, so you can leave the new content as `""`
+        This cange the cell in the specified location to the text in the clipboard.
+
+        Aditionaly, this method also returns the old content of the specified cell
         '''
 
         if row >= self.row_len:
@@ -287,20 +287,16 @@ class table:
         '''
         The add method can be used to add two cells, if the cells are integers or can be converted to integers,
         Syntax:
-            table_obj.add(row1, column1, row2, column2)
+
+            table_obj.add(row1, column1, row2, column2, copy={True/False})
+            
         where:
-            table_obj  = a table object
-            row1       = cell row of the first cell as an integer
-            column1    = cell column of the first cell as an integer, or the heading of the column as a string
-            row2       = cell row of the second cell as an integer
-            column2    = cell column of the second cell as an integer, or the heading of the column as a string
-
-        You can also additionally, copy the result to your clipboard, by setting the 'copy' attribute to True.
-        
-        Syntax:
-            table_obj.add(row1, column1, row2, column2, copy=True)
-
-        This will copy the result to your clipboard.
+          `table_obj`    = a table object
+          `row1`       = cell row of the first cell as an integer
+          `column1`    = cell column of the first cell as an integer, or the heading of the column as a string
+          `row2 `      = cell row of the second cell as an integer
+          `column2`    = cell column of the second cell as an integer, or the heading of the column as a string
+          `copy`       = If this boolean attribute is set to True, the result will be copied to your clipboard(False by default)
 
         returns the sum of the two cells
 
@@ -322,25 +318,24 @@ class table:
     def add_all(self, x1, x2, y1, y2, copy=False):
         '''
         The add_all() method can be used to add all the cells from a cell to another cell, if all their values are integers
+
         Syntax:
-            table_obj.add_all(from_row, from_column, to_row, to_column)
+
+            table_obj.add_all(from_row, from_column, to_row, to_column, copy={True/False})
 
         where:
-            table_obj   = a table object
-            from_row    = row number of the first cell
-            from_column = column number of the first cell
-            to_row      = row number of the last cell
-            to_column   = column number of the last cell
+            `table_obj`   = a table object
+            `from_row`    = row number of the first cell
+            `from_column` = column number of the first cell
+            `to_row`      = row number of the last cell
+            `to_column`   = column number of the last cell
+            `copy`        = a boolean, if True- the result will be copied to your clipboard (False by default)
 
-        returns the sum of all the content of cells between, and including the specified cells
+        returns the sum of all the content of cells between the specified cells.
 
-        You can also additionally, copy the result to your clipboard, by setting the 'copy' attribute to True.
-        
-        Syntax:
-            table_obj.add_all(from_row, from_column, to_row, to_column, copy=True)
-
-        This will copy the result to your clipboard.
         If any cell content cannot be converted to an integer, 'TypeError' is raised
+
+        NOTE: The the ending cell address(to_row, to_column) is not included in the sum.
         '''
         try:
             if type(x2)is str:
@@ -350,8 +345,6 @@ class table:
         except:
             raise CellOutOfBoundsException(y1, y2)
 
-        y1 += 1
-        y2 += 1 #'+1' is necessary because the iteration must include that cell too
         total_sum = 0
         heads = self.heads()
         table = self._get_layout()

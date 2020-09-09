@@ -9,4 +9,5 @@ Latest Features in 1.1.0:
 -Added 'add_all' method to add all the content from a cell to another cell and return the result
 -Added 'html' method to get the html code of the table
 
-for more information about all of these, see 'README.md' or visit- https://pypi.org/project/tabulux/
+for more information, see 'README.md' or visit- https://pypi.org/project/tabulux/ or,
+Dowmload the documentation - https://drive.google.com/uc?export=download&id=1rnqRuhxC5cBvK7LbjSIZ4LqcNUxlRAeu
