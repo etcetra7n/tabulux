@@ -13,7 +13,7 @@ A package for tablular operation and for making making tabular data
 This project is hosted on github for developmental purpose, 
 in which anyone can contribute, smallest of which are appreciated
 Check out the source code at https://github.com/John-pix/Tabulator-Python
-Download the documentation at https://drive.google.com/uc?export=download&id=1Hg0727A023LMGTM4IfEcFh3R2ytVMvU6
+Download the documentation at https://drive.google.com/uc?export=download&id=1PBXYawIaA7vfTOCT6JjsfPOhitKGjmHZ
 
 Requirments:
     'pyperclip' module for copy-paste feature, you can still use without it but you cant use the copy-past features

@@ -3,9 +3,11 @@ tabulux
 
 This package is for performing tablular operations and for making making tabular data.
 
-[Download this documetation](https://drive.google.com/uc?export=download&id=1rnqRuhxC5cBvK7LbjSIZ4LqcNUxlRAeu)
+[Download this documetation](https://drive.google.com/uc?export=download&id=1PBXYawIaA7vfTOCT6JjsfPOhitKGjmHZ)
+
 This module requires 'pyperclip', for using the copy-paste feature
 You can still use this module without pyperclip, but it is strongly recommended to install pyperclip
+
 [visit PyPI-Pyperclip](https://pypi.org/project/pyperclip/)
 
 Import using:
@@ -58,8 +60,9 @@ Syntax:
     table_obj.column_length(copy={True/False})
 
 where:
-  `table_obj` = a table object
-  `copy`      = This boolean attribute copies the result as text to your clipboard (False by default)
+
++  `table_obj` = a table object
++  `copy`      = This boolean attribute copies the result as text to your clipboard (False by default)
 
 returns integer representing the number of column in `table_obj`
 
@@ -73,8 +76,9 @@ Syntax:
     table_obj.row_length(copy={True/False})
 
 where:
-  `table_obj` = a table object
-  `copy`      = This boolean attribute copies the result as text to your clipboard (False by default)
+
++  `table_obj` = a table object
++  `copy`      = This boolean attribute copies the result as text to your clipboard (False by default)
 
 returns integer representing the number of rows in `table_obj`
 
@@ -88,8 +92,9 @@ Syntax:
     table_obj.column(column_number)
 
 where:
-  `table_obj`      = a table object
-  `column_number`  = an integer which represents column number (starting from 0) or, the heading of the column (as a string)
+
++  `table_obj`      = a table object
++  `column_number`  = an integer which represents column number (starting from 0) or, the heading of the column (as a string)
 
 returns all the elements from the specified column as list of strings. The column headings are not returned
 
@@ -105,8 +110,9 @@ Syntax:
     table_obj.row(row_number)
 
 where:
-  `table_obj`      = a table object
-  `row_number`     = an integer representing the row number (starts from 0)
+
++  `table_obj`      = a table object
++  `row_number`     = an integer representing the row number (starts from 0)
 
 returns all the elements from the specified row as list of strings.
 
@@ -122,7 +128,8 @@ Syntax :
     table_obj.heads()
  
 where:
-  `table_obj` = a table object
+
++  `table_obj` = a table object
 
 returns a list of string representing the each heading of the table
 
@@ -136,9 +143,10 @@ Syntax:
     table_obj.head(column_number, copy={True/False})
 
 where:
-  `table_obj`      =  A table object
-  `column_number`  =  An integer representing the column number, whose heading you want
-  `copy`           =  A boolean- if True, copies the heading to your clipboard(False by default)
+
++  `table_obj`      =  A table object
++  `column_number`  =  An integer representing the column number, whose heading you want
++  `copy`           =  A boolean- if True, copies the heading to your clipboard(False by default)
 
 returns the heading of the specified column of the table as a string.
 
@@ -152,10 +160,11 @@ Use this method when you need the cell content of a cell
     table_obj.cell(row_ID, column_ID, copy={True/False})
 
 where,
-  `table_obj` = table object
-  `row`       = integer representing the row number (starting from 0), or, the heading of the column as a string
-  `column`    = integer representing the column number (starting from 0)
-  `copy`      = a boolean, if true- copies the result to your clipboard(False,by default)
+
++  `table_obj` = table object
++  `row`       = integer representing the row number (starting from 0), or, the heading of the column as a string
++  `column`    = integer representing the column number (starting from 0)
++  `copy`      = a boolean, if true- copies the result to your clipboard(False,by default)
 
 returns the Cell Content of the specified location as String. 
 
@@ -171,7 +180,8 @@ Syntax :
     table_obj.display()
 
 where:
-  `table_obj` = a table object
+
++  `table_obj` = a table object
 
 Output:
   prints data in `table_obj` in a tabular form
@@ -194,10 +204,11 @@ Syntax:
 	table_obj.change(row_ID, column_ID, new_content)
 	
 where, 
-  `table_obj`   =  a table object
-  `row_ID`      =  an integer representing the column number(starts from 0)
-  `column_ID`   =  an integer representing the column number(starts from 0), or the heading of the column as a string
-  `new_content` =  a string containg the new content
+
++  `table_obj`   =  a table object
++  `row_ID`      =  an integer representing the column number(starts from 0)
++  `column_ID`   =  an integer representing the column number(starts from 0), or the heading of the column as a string
++  `new_content` =  a string containg the new content
   
 changes the of the specified column to the content in `new_content`
 
@@ -207,8 +218,8 @@ Syntax:
 
 	table_obj.change(row_ID, column_ID, new_content, paste=True)
 	
-the 'new_content' is ignored if paste is set to True, so you can leave the new content as `""`
-This cange the cell in the specified location to the text in the clipboard.
+the 'new_content' is ignored if paste is set to True, so you can leave the new content as `""`.
+This changes the cell in the specified location to the text in the clipboard.
 
 Aditionaly, this method also returns the old content of the specified cell
 
@@ -216,17 +227,19 @@ add()
 ------
 
 The add method can be used to add two cells, if the cells are integers or can be converted to integers,
+
 Syntax:
 
 	table_obj.add(row1, column1, row2, column2, copy={True/False})
 	
 where:
-  `table_obj`    = a table object
-  `row1`       = cell row of the first cell as an integer
-  `column1`    = cell column of the first cell as an integer, or the heading of the column as a string
-  `row2 `      = cell row of the second cell as an integer
-  `column2`    = cell column of the second cell as an integer, or the heading of the column as a string
-  `copy`       = If this boolean attribute is set to True, the result will be copied to your clipboard(False by default)
+
++  `table_obj`    = a table object
++  `row1`       = cell row of the first cell as an integer
++  `column1`    = cell column of the first cell as an integer, or the heading of the column as a string
++  `row2 `      = cell row of the second cell as an integer
++  `column2`    = cell column of the second cell as an integer, or the heading of the column as a string
++  `copy`       = If this boolean attribute is set to True, the result will be copied to your clipboard(False by default)
 
 returns the sum of the two cells
 
@@ -240,12 +253,13 @@ Syntax:
 	table_obj.add_all(from_row, from_column, to_row, to_column, copy={True/False})
 
 where:
-  `table_obj`   = a table object
-  `from_row`    = row number of the first cell
-  `from_column` = column number of the first cell
-  `to_row`      = row number of the last cell
-  `to_column`   = column number of the last cell
-  `copy`        = a boolean, if True- the result will be copied to your clipboard (False by default)
+
++  `table_obj`   = a table object
++  `from_row`    = row number of the first cell
++  `from_column` = column number of the first cell
++  `to_row`      = row number of the last cell
++  `to_column`   = column number of the last cell
++  `copy`        = a boolean, if True- the result will be copied to your clipboard (False by default)
 
 returns the sum of all the content of cells between the specified cells.
 
@@ -257,17 +271,19 @@ html()
 ------
 
 The 'html()' method is used to get the html snippet of a table.
+
 Syntax:
 
 	table_obj.html(display={True/False}, copy={True/False}, indent={int})
-
+	
 where:
-  `table_obj` = a table object
-  `display`   = if set to True, this boolean attribute will display the html snippet in the console\terminal, (False by default)
-  `copy`      = this boolean attribute, if set to True, copies the html snippet to you clipboard, and can by pasted to your html file(False by default)
-  `indent`    = indentation spaces that sould be applied, as integer (4 by default)
 
-returns the html snippet of the table as a string, from and including <table> to <\/table>
++  `table_obj` = a table object
++  `display`   = if set to True, this boolean attribute will display the html snippet in the console\terminal, (False by default)
++  `copy`      = this boolean attribute, if set to True, copies the html snippet to you clipboard, and can by pasted to your html file(False by default)
++  `indent`    = indentation spaces that sould be applied, as integer (4 by default)
+
+returns the html snippet of the table as a string, from and including \<table> to <\/table>
 
 
 [Take me to this project's github repository page](https://github.com/John-pix/Tabulux-Python)
