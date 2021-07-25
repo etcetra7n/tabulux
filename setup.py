@@ -6,8 +6,8 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="tabulux",
     version="1.2.0",
-    author="John-Anchery",
-    author_email="JohnPix005@gmail.com",
+    author="NioGreek",
+    author_email="GreekNio@gmail.com",
     description="A package to form and retrieve tabular data",
     long_description=long_description,
     long_description_content_type="text/markdown",
